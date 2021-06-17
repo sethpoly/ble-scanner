@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		BA27E00D267BDE6B0029C28D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27E00C267BDE6A0029C28D /* AppDelegate.swift */; };
-		BA27E00F267BDE6B0029C28D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27E00E267BDE6B0029C28D /* ViewController.swift */; };
 		BA27E012267BDE6B0029C28D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA27E010267BDE6B0029C28D /* Main.storyboard */; };
 		BA27E014267BDE6B0029C28D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA27E013267BDE6B0029C28D /* Assets.xcassets */; };
 		BA27E017267BDE6B0029C28D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA27E015267BDE6B0029C28D /* LaunchScreen.storyboard */; };
 		BA27E021267BF3290029C28D /* BLETableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27E020267BF3290029C28D /* BLETableViewController.swift */; };
+		BA27E025267BFBDC0029C28D /* BLETableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27E024267BFBDC0029C28D /* BLETableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		BA27E009267BDE6A0029C28D /* ble_scanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ble_scanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA27E00C267BDE6A0029C28D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BA27E00E267BDE6B0029C28D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BA27E011267BDE6B0029C28D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BA27E013267BDE6B0029C28D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA27E016267BDE6B0029C28D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA27E018267BDE6B0029C28D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA27E020267BF3290029C28D /* BLETableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLETableViewController.swift; sourceTree = "<group>"; };
+		BA27E024267BFBDC0029C28D /* BLETableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLETableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +56,31 @@
 		BA27E00B267BDE6A0029C28D /* ble_scanner */ = {
 			isa = PBXGroup;
 			children = (
+				BA27E023267BFBC20029C28D /* Views */,
+				BA27E022267BFBB60029C28D /* Controllers */,
 				BA27E00C267BDE6A0029C28D /* AppDelegate.swift */,
-				BA27E00E267BDE6B0029C28D /* ViewController.swift */,
 				BA27E010267BDE6B0029C28D /* Main.storyboard */,
 				BA27E013267BDE6B0029C28D /* Assets.xcassets */,
 				BA27E015267BDE6B0029C28D /* LaunchScreen.storyboard */,
 				BA27E018267BDE6B0029C28D /* Info.plist */,
-				BA27E020267BF3290029C28D /* BLETableViewController.swift */,
 			);
 			path = ble_scanner;
+			sourceTree = "<group>";
+		};
+		BA27E022267BFBB60029C28D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BA27E020267BF3290029C28D /* BLETableViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		BA27E023267BFBC20029C28D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BA27E024267BFBDC0029C28D /* BLETableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +155,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA27E025267BFBDC0029C28D /* BLETableViewCell.swift in Sources */,
 				BA27E021267BF3290029C28D /* BLETableViewController.swift in Sources */,
-				BA27E00F267BDE6B0029C28D /* ViewController.swift in Sources */,
 				BA27E00D267BDE6B0029C28D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
