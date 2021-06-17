@@ -10,19 +10,41 @@ import UIKit
 import CoreBluetooth
 
 class BLETableViewController: UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
-    
+        
     // Object that scans, discovers, connects, manages, peripherals
     var centralManager: CBCentralManager!
     
     // Reference to chosen peripheral object when connection is established
     var chosenPeripheral: CBPeripheral!
-
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Init centralManager
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        
+        // Set up filter button
+        initFilterButton()
+    }
+    
+    // Creates a filter bar button on nav bar
+    func initFilterButton(){
+        let filterBtn: UIButton = UIButton(type: UIButtonType.custom)
+        // Set img for btn
+        filterBtn.setImage(UIImage(named: "filter.jpg"), for: UIControlState.normal)
+        // Add function for button
+        filterBtn.addTarget(self, action: #selector(BLETableViewController.buttonTapped), for: UIControlEvents.touchUpInside)
+        // Set frame
+        filterBtn.frame = CGRect(x:0,y:0,width:32,height:32)
+        
+        let barBtn = UIBarButtonItem(customView: filterBtn)
+        // Assign button
+        self.navigationItem.rightBarButtonItem = barBtn
+    }
+    
+    func buttonTapped() {
+        print("Button Tapped")
     }
 
 

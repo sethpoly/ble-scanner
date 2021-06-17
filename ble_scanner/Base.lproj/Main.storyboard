@@ -77,7 +77,9 @@
                             <outlet property="delegate" destination="xtb-Hf-ln5" id="jsO-te-TIe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="jqk-kj-bav"/>
+                    <navigationItem key="navigationItem" id="jqk-kj-bav">
+                        <nil key="title"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f98-Uy-CYE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -88,9 +90,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="O0L-wp-9lY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8K1-cX-dhq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8K1-cX-dhq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.30557547719691491" green="0.60905640325052723" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
