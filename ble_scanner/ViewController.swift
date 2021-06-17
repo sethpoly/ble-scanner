@@ -7,19 +7,33 @@
 //
 
 import UIKit
+import CoreBluetooth  // Framework used to manage any BLE functionality
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
+    
+    // Object that scans, discovers, connects, manages, peripherals
+    var centralManager: CBCentralManager!
+    
+    // Reference to peripheral object when connection is established
+    var peripheral: CBPeripheral!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Init centralManager
+        centralManager = CBCentralManager(delegate: self, queue: nil)
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // Checks hardware status of Bluetooth on your device (powered on, BLE available/enabled, etc.)
+    func centralManagerDidUpdateState(_ central: CBCentralManager) {
+        if central.state == CBManagerState.poweredOn {
+            print("BLE powered on")
+        }
+        else {
+            print("ERROR: BLE not compatible or off")
+        }
     }
-
 
 }
 
