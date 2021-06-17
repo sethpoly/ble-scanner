@@ -26,23 +26,22 @@ class BLETableViewController: UITableViewController, CBCentralManagerDelegate, C
     }
 
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+   /* override func numberOfSections(in tableView: UITableView) -> Int {
         return 0
-    }
+    } */
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 10
     }
 
-    /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "bleTableViewCell", for: indexPath)
+        
+        cell.textLabel?.text = "Cell Row: \(indexPath.row) Section: \(indexPath.section)"
 
         return cell
     }
-    */
+ 
     
     // Checks hardware status of Bluetooth on your device (powered on, BLE available/enabled, etc.)
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
