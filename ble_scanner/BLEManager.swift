@@ -53,23 +53,19 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
         //print(advertisementData)
+                                
+        peripheralList.append(Peripheral(name: peripheral.name ?? "NoName", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"] != nil), ad: advertisementData))
         
-        // Check if peripheral has name, add to an array
-        if let name = peripheral.name {
-                        
-            peripheralList.append(Peripheral(name: name, RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"] != nil), ad: advertisementData))
-            
-            print(peripheralList)
-            
-            /*
-            // Stop scanning and connect to peripheral
-            self.centralManager.stopScan()
-            self.chosenPeripheral = peripheral     // Save class-level reference of chosen peripheral
-            self.chosenPeripheral.delegate = self  // Delegate self to the chosenPeripheral
-            
-            self.centralManager.connect(peripheral, options: nil)  // Finally connect
-             */
-        }
+        //print(peripheralList)
+        
+        /*
+        // Stop scanning and connect to peripheral
+        self.centralManager.stopScan()
+        self.chosenPeripheral = peripheral     // Save class-level reference of chosen peripheral
+        self.chosenPeripheral.delegate = self  // Delegate self to the chosenPeripheral
+        
+        self.centralManager.connect(peripheral, options: nil)  // Finally connect
+         */
     }
     
     // Called when a connection is made to a BLE device

@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="O0L-wp-9lY">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19115.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="O0L-wp-9lY">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,28 +17,28 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="bleTableViewCell" id="gTo-lg-hnD" customClass="BLETableViewCell" customModule="ble_scanner" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gTo-lg-hnD" id="aHT-od-nba">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5T-tg-7kW">
-                                            <rect key="frame" x="261" y="18" width="106" height="44"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y5T-tg-7kW">
+                                            <rect key="frame" x="253" y="18" width="106" height="44"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="106" id="0dp-3n-wXR"/>
                                                 <constraint firstAttribute="height" constant="44" id="wID-g8-Sjq"/>
                                             </constraints>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal" title="isConnectable"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="238" verticalHuggingPriority="251" text="Peripheral Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9u-Ja-CN4">
-                                            <rect key="frame" x="71" y="29.5" width="182" height="21"/>
+                                            <rect key="frame" x="71" y="29.5" width="174" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RSSI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcx-F3-yVd">
-                                            <rect key="frame" x="11" y="37" width="42" height="45"/>
+                                            <rect key="frame" x="11" y="37.5" width="42" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="42" id="MWp-oy-W0A"/>
                                                 <constraint firstAttribute="height" constant="45" id="X3c-Tg-SEP"/>
@@ -51,7 +48,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="data_bars_test" translatesAutoresizingMaskIntoConstraints="NO" id="LvT-PM-d5T">
-                                            <rect key="frame" x="0.0" y="-11" width="63" height="74"/>
+                                            <rect key="frame" x="0.0" y="-10.5" width="63" height="74"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="63" id="KPu-ar-Ib7"/>
                                                 <constraint firstAttribute="height" constant="74" id="KwZ-ep-vNa"/>
@@ -70,6 +67,12 @@
                                         <constraint firstItem="LvT-PM-d5T" firstAttribute="centerY" secondItem="aHT-od-nba" secondAttribute="centerY" constant="-13.5" id="yrv-SC-JaE"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="RSSILabel" destination="Jcx-F3-yVd" id="NfS-3R-wK8"/>
+                                    <outlet property="connectableBtn" destination="Y5T-tg-7kW" id="Jf1-eL-e7y"/>
+                                    <outlet property="dataImage" destination="LvT-PM-d5T" id="ZLj-u0-3Yn"/>
+                                    <outlet property="nameLabel" destination="i9u-Ja-CN4" id="AGl-LE-Nc2"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -80,6 +83,9 @@
                     <navigationItem key="navigationItem" id="jqk-kj-bav">
                         <nil key="title"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="bleTableView" destination="3q2-Oc-xEK" id="0pu-WN-yHC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f98-Uy-CYE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

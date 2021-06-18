@@ -11,20 +11,18 @@ import CoreBluetooth
 
 class BLETableViewController: UITableViewController {
         
-//    // Object that scans, discovers, connects, manages, peripherals
-//    var centralManager: CBCentralManager!
-//
-//    // Reference to chosen peripheral object when connection is established
-//    var chosenPeripheral: CBPeripheral!
+    @IBOutlet var bleTableView: UITableView!
     
     var bleManager = BLEManager()
+    var scanTimer: Timer?  // Timer used to stop scanning after X seconds
+    var timerCount = 5     // Timer will run for X seconds
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Init centralManager
-        //centralManager = CBCentralManager(delegate: self, queue: nil)
+        // Start timer while manager is scanning
+        scanTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startScanTimer), userInfo: nil, repeats: true)
         
         // Set up filter button
         initFilterButton()
@@ -45,74 +43,44 @@ class BLETableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = barBtn
     }
     
+    @objc func startScanTimer() {
+        print("Scan timer started")
+        reloadTableView()
+        timerCount -= 1
+        
+        if timerCount <= 0 {
+            print("Timer finished.")
+            scanTimer?.invalidate()
+        }
+        
+        
+    }
+    
     @objc func buttonTapped() {
         print("Button Tapped")
     }
 
-
-   /* override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    } */
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return bleManager.peripheralList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "bleTableViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "bleTableViewCell", for: indexPath) as! BLETableViewCell
         
-       // cell.textLabel?.text = "Cell Row: \(indexPath.row) Section: \(indexPath.section)"
+        cell.nameLabel.text = bleManager.peripheralList[indexPath.row].name
+        cell.RSSILabel.text = bleManager.peripheralList[indexPath.row].RSSI
+        cell.connectableBtn.setTitle(bleManager.peripheralList[indexPath.row].connectable.description, for: .normal)
 
         return cell
     }
- 
     
-//    // Checks hardware status of Bluetooth on your device (powered on, BLE available/enabled, etc.)
-//    func centralManagerDidUpdateState(_ central: CBCentralManager) {
-//        // BLE is on, start scanning for peripherals
-//        if central.state == CBManagerState.poweredOn {
-//            print("BLE powered on")
-//
-//            // Could populate the withServices param to scan for specific UUIDs (like in the bauer lock example)
-//            central.scanForPeripherals(withServices: nil, options: nil)
-//        }
-//            // BLE is off or not found, print err message
-//        else {
-//            print("ERROR: BLE not compatible or off")
-//        }
-//    }
-//
-//    // Is called for each peripheral that is found in the scanForPeripherals func
-//    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-//
-//        // Check if peripheral has name, assign it, and print
-//        if let name = peripheral.name {
-//            print("Name: \(name)")
-//
-//            /*
-//            // Stop scanning and connect to peripheral
-//            self.centralManager.stopScan()
-//            self.chosenPeripheral = peripheral     // Save class-level reference of chosen peripheral
-//            self.chosenPeripheral.delegate = self  // Delegate self to the chosenPeripheral
-//
-//            self.centralManager.connect(peripheral, options: nil)  // Finally connect
-//             */
-//        } else {
-//            print("No name found")
-//        }
-//        // Print RSSI
-//        print("RSSI: \(RSSI)")
-//
-//        // Print ad data
-//        for ad in advertisementData {
-//            print("AD Data: \(ad)")
-//        }
-//
-//    }
-//
-//    // Called when a connection is made to a BLE device
-//    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-//        self.chosenPeripheral.discoverServices(nil)
-//    }
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Selected \(indexPath.row)")
+    }
+    
+    // Reload the table view after a few seconds of scanning for devices
+    func reloadTableView(){
+        bleTableView.reloadData()
+    }
+ 
 }
