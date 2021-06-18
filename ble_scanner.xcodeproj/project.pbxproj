@@ -115,6 +115,7 @@
 				TargetAttributes = {
 					BA27E008267BDE6A0029C28D = {
 						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = CZ88FUBGB9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -280,7 +281,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CZ88FUBGB9;
 				INFOPLIST_FILE = ble_scanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sethpoly.ble-scanner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,7 +295,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CZ88FUBGB9;
 				INFOPLIST_FILE = ble_scanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "sethpoly.ble-scanner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
