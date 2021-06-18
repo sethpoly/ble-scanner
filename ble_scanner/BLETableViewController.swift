@@ -36,7 +36,7 @@ class BLETableViewController: UITableViewController {
         // Add function for button
         filterBtn.addTarget(self, action: #selector(BLETableViewController.buttonTapped), for: UIControl.Event.touchUpInside)
         // Set frame
-        filterBtn.frame = CGRect(x:0,y:0,width:32,height:32)
+        filterBtn.frame = CGRect(x:0,y:0,width:24,height:24)
         
         let barBtn = UIBarButtonItem(customView: filterBtn)
         // Assign button

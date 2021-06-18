@@ -14,10 +14,10 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     struct Peripheral {
         let name: String
         let RSSI: String
-        let connectable: Bool
+        let connectable: NSNumber
         let ad: [String : Any]
         
-        init(name: String, RSSI: NSNumber, connectable: Bool, ad: [String : Any]) {
+        init(name: String, RSSI: NSNumber, connectable: NSNumber, ad: [String : Any]) {
             self.name = "\(name)"
             self.RSSI = "\(RSSI)"
             self.connectable = connectable
@@ -54,9 +54,9 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         //print(advertisementData)
                                 
-        peripheralList.append(Peripheral(name: peripheral.name ?? "NoName", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"] != nil), ad: advertisementData))
+        peripheralList.append(Peripheral(name: peripheral.name ?? "NoName", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, ad: advertisementData))
         
-        //print(peripheralList)
+        print(peripheralList)
         
         /*
         // Stop scanning and connect to peripheral
