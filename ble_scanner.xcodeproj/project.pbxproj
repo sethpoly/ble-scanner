@@ -24,6 +24,7 @@
 		BA27E018267BDE6B0029C28D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA27E020267BF3290029C28D /* BLETableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLETableViewController.swift; sourceTree = "<group>"; };
 		BA27E024267BFBDC0029C28D /* BLETableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLETableViewCell.swift; sourceTree = "<group>"; };
+		BA377830267D415900AA27E0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +64,7 @@
 				BA27E013267BDE6B0029C28D /* Assets.xcassets */,
 				BA27E015267BDE6B0029C28D /* LaunchScreen.storyboard */,
 				BA27E018267BDE6B0029C28D /* Info.plist */,
+				BA377830267D415900AA27E0 /* README.md */,
 			);
 			path = ble_scanner;
 			sourceTree = "<group>";
