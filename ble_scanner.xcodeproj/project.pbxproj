@@ -43,6 +43,7 @@
 		BA27E000267BDE6A0029C28D = {
 			isa = PBXGroup;
 			children = (
+				BA377830267D415900AA27E0 /* README.md */,
 				BA27E00B267BDE6A0029C28D /* ble_scanner */,
 				BA27E00A267BDE6A0029C28D /* Products */,
 			);
@@ -66,7 +67,6 @@
 				BA27E013267BDE6B0029C28D /* Assets.xcassets */,
 				BA27E015267BDE6B0029C28D /* LaunchScreen.storyboard */,
 				BA27E018267BDE6B0029C28D /* Info.plist */,
-				BA377830267D415900AA27E0 /* README.md */,
 			);
 			path = ble_scanner;
 			sourceTree = "<group>";
