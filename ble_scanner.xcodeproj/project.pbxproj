@@ -13,6 +13,7 @@
 		BA27E017267BDE6B0029C28D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA27E015267BDE6B0029C28D /* LaunchScreen.storyboard */; };
 		BA27E021267BF3290029C28D /* BLETableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27E020267BF3290029C28D /* BLETableViewController.swift */; };
 		BA27E025267BFBDC0029C28D /* BLETableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27E024267BFBDC0029C28D /* BLETableViewCell.swift */; };
+		BA377832267D472400AA27E0 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA377831267D472400AA27E0 /* BLEManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		BA27E020267BF3290029C28D /* BLETableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLETableViewController.swift; sourceTree = "<group>"; };
 		BA27E024267BFBDC0029C28D /* BLETableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLETableViewCell.swift; sourceTree = "<group>"; };
 		BA377830267D415900AA27E0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BA377831267D472400AA27E0 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				BA27E020267BF3290029C28D /* BLETableViewController.swift */,
+				BA377831267D472400AA27E0 /* BLEManager.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA27E025267BFBDC0029C28D /* BLETableViewCell.swift in Sources */,
+				BA377832267D472400AA27E0 /* BLEManager.swift in Sources */,
 				BA27E021267BF3290029C28D /* BLETableViewController.swift in Sources */,
 				BA27E00D267BDE6B0029C28D /* AppDelegate.swift in Sources */,
 			);
