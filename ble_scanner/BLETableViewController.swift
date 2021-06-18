@@ -30,11 +30,11 @@ class BLETableViewController: UITableViewController, CBCentralManagerDelegate, C
     
     // Creates a filter bar button on nav bar
     func initFilterButton(){
-        let filterBtn: UIButton = UIButton(type: UIButtonType.custom)
+        let filterBtn: UIButton = UIButton(type: UIButton.ButtonType.custom)
         // Set img for btn
-        filterBtn.setImage(UIImage(named: "filter.jpg"), for: UIControlState.normal)
+        filterBtn.setImage(UIImage(named: "filter.jpg"), for: UIControl.State.normal)
         // Add function for button
-        filterBtn.addTarget(self, action: #selector(BLETableViewController.buttonTapped), for: UIControlEvents.touchUpInside)
+        filterBtn.addTarget(self, action: #selector(BLETableViewController.buttonTapped), for: UIControl.Event.touchUpInside)
         // Set frame
         filterBtn.frame = CGRect(x:0,y:0,width:32,height:32)
         
@@ -43,7 +43,7 @@ class BLETableViewController: UITableViewController, CBCentralManagerDelegate, C
         self.navigationItem.rightBarButtonItem = barBtn
     }
     
-    func buttonTapped() {
+    @objc func buttonTapped() {
         print("Button Tapped")
     }
 
