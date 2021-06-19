@@ -9,20 +9,28 @@
 import UIKit
 import CoreBluetooth
 
-class BLETableViewController: UITableViewController {
+class BLETableViewController: UITableViewController, RefreshDelegate {
+    
         
     @IBOutlet var bleTableView: UITableView!
-    
+        
     var bleManager = BLEManager()
     var scanTimer: Timer?  // Timer used to stop scanning after X seconds
-    var timerCount = 5     // Timer will run for X seconds
+    var timerCount = 10    // Timer will run for X seconds
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Connect delegate to self
+        bleManager.refreshDelegate = self
+        
         // Start timer while manager is scanning
-        scanTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startScanTimer), userInfo: nil, repeats: true)
+//        scanTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startScanTimer), userInfo: nil, repeats: true)
+        
+        // Init refresh control to completely rescan ble peripherals
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl!.addTarget(self, action: #selector(self.reloadTableView1), for: UIControlEvents.valueChanged)
         
         // Set up filter button
         initFilterButton()
@@ -68,6 +76,7 @@ class BLETableViewController: UITableViewController {
         cell.nameLabel.text = bleManager.peripheralList[indexPath.row].name
         cell.RSSILabel.text = bleManager.peripheralList[indexPath.row].RSSI
         
+        // Styling for connectable label
         let connectableValue = bleManager.peripheralList[indexPath.row].connectable
         var connectableText: String
         var connectableColor: UIColor
@@ -92,8 +101,18 @@ class BLETableViewController: UITableViewController {
     }
     
     // Reload the table view after a few seconds of scanning for devices
-    func reloadTableView(){
+    @objc func reloadTableView1(){
+        bleTableView.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
+    
+    // Reload tableview with peripheralList data
+    func reloadTableView() {
         bleTableView.reloadData()
     }
- 
+}
+
+// Allows us to call the reloadview from BLE manager
+protocol RefreshDelegate {
+    func reloadTableView()
 }

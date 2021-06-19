@@ -33,6 +33,8 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var chosenPeripheral: CBPeripheral!
     // Array holds nearby scanned peripherals
     var peripheralList: [Peripheral] = []
+    // Delegate so we can reload the view from this class
+    var refreshDelegate: RefreshDelegate?
     
     // First function call when object is created
     override init() {
@@ -63,6 +65,8 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             // Print list
             print("START OF LIST ==========")
             print(peripheralList)
+            
+            self.refreshDelegate?.reloadTableView()
         }
 
         
