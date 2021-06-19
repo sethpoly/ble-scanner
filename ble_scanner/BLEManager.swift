@@ -15,12 +15,14 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         let name: String
         let RSSI: String
         let connectable: NSNumber
+        let uuid: String
         let ad: [String : Any]
         
-        init(name: String, RSSI: NSNumber, connectable: NSNumber, ad: [String : Any]) {
+        init(name: String, RSSI: NSNumber, connectable: NSNumber, uuid: String,ad: [String : Any]) {
             self.name = "\(name)"
             self.RSSI = "\(RSSI)"
             self.connectable = connectable
+            self.uuid = uuid
             self.ad = ad
         }
     }
@@ -52,11 +54,17 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     // Is called for each peripheral that is found in the scanForPeripherals func
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         
-        //print(advertisementData)
-                                
-        peripheralList.append(Peripheral(name: peripheral.name ?? "NoName", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, ad: advertisementData))
+        let uuid = peripheral.identifier.uuidString //  Use uuid as unique value
         
-        print(peripheralList)
+        // Check if already scanned peripheral
+        if !peripheralList.contains(where: { $0.uuid == uuid}) {
+            peripheralList.append(Peripheral(name: peripheral.name ?? "N/A", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, uuid: peripheral.identifier.uuidString, ad: advertisementData))
+            
+            // Print list
+            print("START OF LIST ==========")
+            print(peripheralList)
+        }
+
         
         /*
         // Stop scanning and connect to peripheral

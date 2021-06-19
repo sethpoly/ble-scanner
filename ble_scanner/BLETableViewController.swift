@@ -52,8 +52,6 @@ class BLETableViewController: UITableViewController {
             print("Timer finished.")
             scanTimer?.invalidate()
         }
-        
-        
     }
     
     @objc func buttonTapped() {
@@ -69,7 +67,22 @@ class BLETableViewController: UITableViewController {
         
         cell.nameLabel.text = bleManager.peripheralList[indexPath.row].name
         cell.RSSILabel.text = bleManager.peripheralList[indexPath.row].RSSI
-        cell.connectableBtn.setTitle(bleManager.peripheralList[indexPath.row].connectable.description, for: .normal)
+        
+        let connectableValue = bleManager.peripheralList[indexPath.row].connectable
+        var connectableText: String
+        var connectableColor: UIColor
+        
+        if connectableValue == 1 {
+            connectableText = "Connect"
+            connectableColor = UIColor.green
+            
+        } else {
+            connectableText = "Unavailable"
+            connectableColor = UIColor.red
+        }
+        
+        cell.connectableLabel.text = connectableText
+        cell.connectableLabel.backgroundColor = connectableColor
 
         return cell
     }
