@@ -40,7 +40,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
     func initFilterButton(){
         let filterBtn: UIButton = UIButton(type: UIButton.ButtonType.custom)
         // Set img for btn
-        filterBtn.setImage(UIImage(named: "filter.jpg"), for: UIControl.State.normal)
+        filterBtn.setImage(UIImage(named: "sort.png"), for: UIControl.State.normal)
         // Add function for button
         filterBtn.addTarget(self, action: #selector(BLETableViewController.filterResults), for: UIControl.Event.touchUpInside)
         // Set frame
