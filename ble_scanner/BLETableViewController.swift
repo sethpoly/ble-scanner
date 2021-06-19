@@ -30,7 +30,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate {
         
         // Init refresh control to completely rescan ble peripherals
         self.refreshControl = UIRefreshControl()
-        self.refreshControl!.addTarget(self, action: #selector(self.reloadTableView1), for: UIControlEvents.valueChanged)
+        self.refreshControl!.addTarget(self, action: #selector(self.reloadTableView), for: UIControlEvents.valueChanged)
         
         // Set up filter button
         initFilterButton()
@@ -42,7 +42,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate {
         // Set img for btn
         filterBtn.setImage(UIImage(named: "filter.jpg"), for: UIControl.State.normal)
         // Add function for button
-        filterBtn.addTarget(self, action: #selector(BLETableViewController.buttonTapped), for: UIControl.Event.touchUpInside)
+        filterBtn.addTarget(self, action: #selector(BLETableViewController.filterResults), for: UIControl.Event.touchUpInside)
         // Set frame
         filterBtn.frame = CGRect(x:0,y:0,width:24,height:24)
         
@@ -62,8 +62,10 @@ class BLETableViewController: UITableViewController, RefreshDelegate {
         }
     }
     
-    @objc func buttonTapped() {
-        print("Button Tapped")
+    @objc func filterResults() {
+        print("Filtering results..")
+        bleManager.peripheralList.sort { $0.RSSI < $1.RSSI }
+        reloadTableView()
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,15 +102,10 @@ class BLETableViewController: UITableViewController, RefreshDelegate {
         print("Selected \(indexPath.row)")
     }
     
-    // Reload the table view after a few seconds of scanning for devices
-    @objc func reloadTableView1(){
+    // Reload tableview with peripheralList data
+    @objc func reloadTableView() {
         bleTableView.reloadData()
         self.refreshControl?.endRefreshing()
-    }
-    
-    // Reload tableview with peripheralList data
-    func reloadTableView() {
-        bleTableView.reloadData()
     }
 }
 
