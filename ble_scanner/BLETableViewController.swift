@@ -64,6 +64,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate {
     
     @objc func filterResults() {
         print("Filtering results..")
+        //bleManager.centralManager.stopScan()
         bleManager.peripheralList.sort { $0.RSSI < $1.RSSI }
         reloadTableView()
     }
@@ -99,7 +100,12 @@ class BLETableViewController: UITableViewController, RefreshDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Selected \(indexPath.row)")
+        print("Trying to connect..")
+        
+        bleManager.chosenPeripheral = bleManager.peripheralList[indexPath.row].peripheralObj     // Save class-level reference of chosen peripheral
+        bleManager.centralManager.connect(bleManager.chosenPeripheral, options: nil)  // Finally connect
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // Reload tableview with peripheralList data

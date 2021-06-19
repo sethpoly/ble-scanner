@@ -17,13 +17,15 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         let connectable: NSNumber
         let uuid: String
         let ad: [String : Any]
+        let peripheralObj: CBPeripheral
         
-        init(name: String, RSSI: NSNumber, connectable: NSNumber, uuid: String,ad: [String : Any]) {
+        init(name: String, RSSI: NSNumber, connectable: NSNumber, uuid: String,ad: [String : Any], peripheralObj: CBPeripheral) {
             self.name = "\(name)"
             self.RSSI = "\(RSSI)"
             self.connectable = connectable
             self.uuid = uuid
             self.ad = ad
+            self.peripheralObj = peripheralObj
         }
     }
     
@@ -60,12 +62,13 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         // Check if already scanned peripheral
         if !peripheralList.contains(where: { $0.uuid == uuid}) {
-            peripheralList.append(Peripheral(name: peripheral.name ?? "N/A", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, uuid: peripheral.identifier.uuidString, ad: advertisementData))
+            peripheralList.append(Peripheral(name: peripheral.name ?? "N/A", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, uuid: peripheral.identifier.uuidString, ad: advertisementData, peripheralObj: peripheral))
             
             // Print list
-            print("START OF LIST ==========")
-            print(peripheralList)
+            print("New peripheral added to list")
+            //print(peripheralList)
             
+            // Refresh tableview whenever new peripheral is found
             self.refreshDelegate?.reloadTableView()
         }
 
@@ -82,7 +85,14 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     // Called when a connection is made to a BLE device
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("Connected to \(peripheral.name)")
+        peripheral.delegate = self
         self.chosenPeripheral.discoverServices(nil)
+        
+    }
+    
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print("Failed to connect..")
     }
 
     
