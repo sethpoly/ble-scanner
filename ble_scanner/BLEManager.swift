@@ -13,7 +13,7 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     struct Peripheral {
         let name: String
-        let RSSI: String
+        let RSSI: Int
         let connectable: NSNumber
         let uuid: String
         let ad: [String : Any]
@@ -21,7 +21,7 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         init(name: String, RSSI: NSNumber, connectable: NSNumber, uuid: String,ad: [String : Any], peripheralObj: CBPeripheral) {
             self.name = "\(name)"
-            self.RSSI = "\(RSSI)"
+            self.RSSI = Int(truncating: RSSI)
             self.connectable = connectable
             self.uuid = uuid
             self.ad = ad
@@ -85,9 +85,9 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     // Called when a connection is made to a BLE device
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("Connected to \(peripheral.name)")
-        peripheral.delegate = self
-        self.chosenPeripheral.discoverServices(nil)
+        print("Connected to \(String(describing: peripheral.name))")
+        //peripheral.delegate = self
+        //self.chosenPeripheral.discoverServices(nil)
         
     }
     

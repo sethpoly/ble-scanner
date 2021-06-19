@@ -9,7 +9,7 @@
 import UIKit
 import CoreBluetooth
 
-class BLETableViewController: UITableViewController, RefreshDelegate {
+class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripheralDelegate {
     
         
     @IBOutlet var bleTableView: UITableView!
@@ -77,7 +77,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bleTableViewCell", for: indexPath) as! BLETableViewCell
         
         cell.nameLabel.text = bleManager.peripheralList[indexPath.row].name
-        cell.RSSILabel.text = bleManager.peripheralList[indexPath.row].RSSI
+        cell.RSSILabel.text = bleManager.peripheralList[indexPath.row].RSSI.description
         
         // Styling for connectable label
         let connectableValue = bleManager.peripheralList[indexPath.row].connectable
