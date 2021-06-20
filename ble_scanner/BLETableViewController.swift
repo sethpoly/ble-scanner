@@ -16,8 +16,8 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         
     var bleManager = BLEManager()
     var shouldSort: Bool = false  // Bool for sorting by asc or no sort
-    
     var barBtn: UIBarButtonItem?  // Reference to sort toggle button
+    var chosenCell: BLETableViewCell! // The chosen cell the user tapped
     
 
     override func viewDidLoad() {
@@ -92,17 +92,40 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         }
         
         cell.connectableImage.image = connectableImg
-
+        
+        // Style for ifConnected label
+        let isConnectedValue = bleManager.peripheralList[indexPath.row].connected
+        switch(isConnectedValue) {
+        case 1:
+            cell.isConnectedLabel.text = "Connecting..."
+            break
+        case 2:
+            cell.isConnectedLabel.text = "Connected"
+            /* BUG: multiple cells are affected?
+            cell.isConnectedLabel.textColor = UIColor(red: 0.0/255, green: 190.0/255, blue: 112.0/255, alpha: 1)
+             */
+            break
+        default:
+            cell.isConnectedLabel.text = "Not connected"
+            break
+        }
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Display that we are trying to connect on cell select
+        bleManager.peripheralList[indexPath.row].connected = 1  // "Connecting..."
         print("Trying to connect..")
         
-        bleManager.chosenPeripheral = bleManager.peripheralList[indexPath.row].peripheralObj     // Save class-level reference of chosen peripheral
-        bleManager.centralManager.connect(bleManager.chosenPeripheral, options: nil)  // Finally connect
+        // Save chosen peripheral & connect
+        bleManager.chosenPeripheral = bleManager.peripheralList[indexPath.row]
+        bleManager.centralManager.connect(bleManager.chosenPeripheral.peripheralObj, options: nil)
         
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        reloadTableView()
     }
     
     // Reload tableview with peripheralList data
@@ -114,9 +137,19 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         bleTableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
+    
+    // When successfully connected to a peripheral, change label text
+    // Called from BLEManager class
+    func onPeripheralConnection(uuid: String) {
+        if let index = bleManager.peripheralList.firstIndex(where: { $0.uuid == uuid}) {
+            bleManager.peripheralList[index].connected = 2 // "Connected"
+        }
+        reloadTableView()
+    }
 }
 
 // Allows us to call the reloadview from BLE manager
 protocol RefreshDelegate {
     func reloadTableView()
+    func onPeripheralConnection(uuid: String)
 }

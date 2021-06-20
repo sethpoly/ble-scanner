@@ -14,4 +14,5 @@ class BLETableViewCell: UITableViewCell {
     @IBOutlet weak var dataImage: UIImageView!
     @IBOutlet weak var RSSILabel: UILabel!
     @IBOutlet weak var connectableImage: UIImageView!
+    @IBOutlet weak var isConnectedLabel: UILabel!
 }

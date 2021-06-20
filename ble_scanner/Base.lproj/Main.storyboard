@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19107.4"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -52,6 +53,13 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <imageReference key="image" image="connectable"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gI4-39-qQV">
+                                            <rect key="frame" x="71" y="50" width="84" height="15"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="i9u-Ja-CN4" firstAttribute="centerY" secondItem="aHT-od-nba" secondAttribute="centerY" id="BZs-8J-cIa"/>
@@ -66,6 +74,7 @@
                                     <outlet property="RSSILabel" destination="Jcx-F3-yVd" id="NfS-3R-wK8"/>
                                     <outlet property="connectableImage" destination="PUR-4z-FxP" id="UwT-Lz-8Zf"/>
                                     <outlet property="dataImage" destination="LvT-PM-d5T" id="ZLj-u0-3Yn"/>
+                                    <outlet property="isConnectedLabel" destination="gI4-39-qQV" id="gGa-MJ-tMD"/>
                                     <outlet property="nameLabel" destination="i9u-Ja-CN4" id="AGl-LE-Nc2"/>
                                 </connections>
                             </tableViewCell>
@@ -107,5 +116,8 @@
     <resources>
         <image name="connectable" width="50" height="50"/>
         <image name="data_bars_test" width="512" height="512"/>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

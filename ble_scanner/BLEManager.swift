@@ -18,21 +18,23 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         let uuid: String
         let ad: [String : Any]
         let peripheralObj: CBPeripheral
+        var connected: Int
         
-        init(name: String, RSSI: NSNumber, connectable: NSNumber, uuid: String,ad: [String : Any], peripheralObj: CBPeripheral) {
+        init(name: String, RSSI: NSNumber, connectable: NSNumber, uuid: String,ad: [String : Any], peripheralObj: CBPeripheral, connected: Int) {
             self.name = "\(name)"
             self.RSSI = Int(truncating: RSSI)
             self.connectable = connectable
             self.uuid = uuid
             self.ad = ad
             self.peripheralObj = peripheralObj
+            self.connected = connected
         }
     }
     
     // Object that scans, discovers, connects, manages, peripherals
     var centralManager: CBCentralManager!
     // Reference to chosen peripheral object when connection is established
-    var chosenPeripheral: CBPeripheral!
+    var chosenPeripheral: Peripheral!
     // Array holds nearby scanned peripherals
     var peripheralList: [Peripheral] = []
     // Delegate so we can reload the view from this class
@@ -62,9 +64,9 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         // Check if already scanned peripheral
         if !peripheralList.contains(where: { $0.uuid == uuid}) {
-            peripheralList.append(Peripheral(name: peripheral.name ?? "N/A", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, uuid: peripheral.identifier.uuidString, ad: advertisementData, peripheralObj: peripheral))
+            peripheralList.append(Peripheral(name: peripheral.name ?? "N/A", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, uuid: peripheral.identifier.uuidString, ad: advertisementData, peripheralObj: peripheral, connected: 0))
             
-            // Print list
+            // Print newly added peripheral name
             print("New peripheral added to list: \(peripheral.name ?? "N/A")")
             
             // Refresh tableview whenever new peripheral is found
@@ -75,6 +77,7 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     // Called when a connection is made to a BLE device
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("Connected to \(String(describing: peripheral.name))")
+        self.refreshDelegate?.onPeripheralConnection(uuid: peripheral.identifier.uuidString)
         //peripheral.delegate = self
         //self.chosenPeripheral.discoverServices(nil)
         
