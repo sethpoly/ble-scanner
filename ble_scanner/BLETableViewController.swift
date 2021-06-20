@@ -86,7 +86,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         
         if connectableValue == 1 {
             connectableText = "Connect"
-            connectableColor = UIColor.green
+            connectableColor = UIColor(red: 50.0/255, green: 180.0/255, blue: 111.0/255, alpha: 1)
             
         } else {
             connectableText = "Unavailable"
