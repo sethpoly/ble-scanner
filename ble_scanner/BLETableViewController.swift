@@ -15,8 +15,6 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
     @IBOutlet var bleTableView: UITableView!
         
     var bleManager = BLEManager()
-    var scanTimer: Timer?  // Timer used to stop scanning after X seconds
-    var timerCount = 10    // Timer will run for X seconds
     var shouldSort: Bool = false  // Bool for sorting by asc or no sort
     
     var barBtn: UIBarButtonItem?  // Reference to sort toggle button
