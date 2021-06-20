@@ -19,6 +19,8 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
     var timerCount = 10    // Timer will run for X seconds
     var shouldSort: Bool = false  // Bool for sorting by asc or no sort
     
+    var barBtn: UIBarButtonItem?  // Reference to sort toggle button
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,28 +51,23 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         // Set frame
         sortBtn.frame = CGRect(x:0,y:0,width:24,height:24)
         
-        let barBtn = UIBarButtonItem(customView: sortBtn)
+        barBtn = UIBarButtonItem(customView: sortBtn)
         
-        barBtn.customView?.backgroundColor = UIColor(red: 39.0/255, green: 131.0/255, blue: 196.0/255, alpha: 1)
-        // UIColor(red: 39, green: 131, blue: 196, alpha: 1)
+        barBtn?.customView?.backgroundColor = UIColor(red: 39.0/255, green: 131.0/255, blue: 196.0/255, alpha: 0)
+
         // Assign button
         self.navigationItem.rightBarButtonItem = barBtn
     }
     
-    @objc func startScanTimer() {
-        print("Scan timer started")
-        reloadTableView()
-        timerCount -= 1
-        
-        if timerCount <= 0 {
-            print("Timer finished.")
-            scanTimer?.invalidate()
-        }
-    }
-    
     @objc func togglesort() {
         shouldSort = !shouldSort  // Set so all incoming peripherals are sorted automatically
-        print("Sort: \(shouldSort)")
+        
+        // Toggle button background on button press
+        barBtn?.customView?.backgroundColor =  shouldSort ? UIColor(red: 39.0/255, green: 131.0/255, blue: 196.0/255, alpha: 1)
+            : UIColor(red: 39.0/255, green: 131.0/255, blue: 196.0/255, alpha: 0)
+
+        
+        print("Sorting enabled: \(shouldSort)")
         reloadTableView()   // Reload view
     }
 
