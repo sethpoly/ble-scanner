@@ -17,6 +17,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
     var bleManager = BLEManager()
     var scanTimer: Timer?  // Timer used to stop scanning after X seconds
     var timerCount = 10    // Timer will run for X seconds
+    var shouldSort: Bool = false  // Bool for sorting by asc or no sort
     
 
     override func viewDidLoad() {
@@ -42,7 +43,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         // Set img for btn
         filterBtn.setImage(UIImage(named: "sort.png"), for: UIControl.State.normal)
         // Add function for button
-        filterBtn.addTarget(self, action: #selector(BLETableViewController.filterResults), for: UIControl.Event.touchUpInside)
+        filterBtn.addTarget(self, action: #selector(BLETableViewController.toggleFilter), for: UIControl.Event.touchUpInside)
         // Set frame
         filterBtn.frame = CGRect(x:0,y:0,width:24,height:24)
         
@@ -62,11 +63,10 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         }
     }
     
-    @objc func filterResults() {
-        print("Filtering results..")
-        //bleManager.centralManager.stopScan()
-        bleManager.peripheralList.sort { $0.RSSI < $1.RSSI }
-        reloadTableView()
+    @objc func toggleFilter() {
+        shouldSort = !shouldSort  // Set so all incoming peripherals are sorted automatically
+        print("Sort: \(shouldSort)")
+        reloadTableView()   // Reload view
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -110,6 +110,10 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
     
     // Reload tableview with peripheralList data
     @objc func reloadTableView() {
+        // Sorts by asc before reloading view
+        if shouldSort {
+            bleManager.peripheralList.sort { $0.RSSI < $1.RSSI }  // Sort RSSI ascending
+        }
         bleTableView.reloadData()
         self.refreshControl?.endRefreshing()
     }
