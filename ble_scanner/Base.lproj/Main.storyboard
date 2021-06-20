@@ -25,50 +25,38 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="238" verticalHuggingPriority="251" text="Peripheral Name" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9u-Ja-CN4">
-                                            <rect key="frame" x="71" y="29.5" width="126" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="238" verticalHuggingPriority="251" fixedFrame="YES" text="Peripheral Name" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i9u-Ja-CN4">
+                                            <rect key="frame" x="64" y="23" width="224" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RSSI" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcx-F3-yVd">
-                                            <rect key="frame" x="11" y="37.5" width="42" height="45"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="42" id="MWp-oy-W0A"/>
-                                                <constraint firstAttribute="height" constant="45" id="X3c-Tg-SEP"/>
-                                            </constraints>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="RSSI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcx-F3-yVd">
+                                            <rect key="frame" x="10" y="50" width="42" height="25"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="data_bars_test" translatesAutoresizingMaskIntoConstraints="NO" id="LvT-PM-d5T">
-                                            <rect key="frame" x="0.0" y="-10.5" width="63" height="74"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="63" id="KPu-ar-Ib7"/>
-                                                <constraint firstAttribute="height" constant="74" id="KwZ-ep-vNa"/>
-                                            </constraints>
-                                        </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PUR-4z-FxP">
                                             <rect key="frame" x="296" y="16" width="48" height="49"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <imageReference key="image" image="connectable"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Not connected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gI4-39-qQV">
-                                            <rect key="frame" x="71" y="50" width="84" height="15"/>
+                                            <rect key="frame" x="64" y="43" width="224" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LvT-PM-d5T">
+                                            <rect key="frame" x="10" y="11" width="42" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <imageReference key="image" image="signal_empty"/>
+                                        </imageView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="i9u-Ja-CN4" firstAttribute="centerY" secondItem="aHT-od-nba" secondAttribute="centerY" id="BZs-8J-cIa"/>
-                                        <constraint firstItem="LvT-PM-d5T" firstAttribute="leading" secondItem="aHT-od-nba" secondAttribute="leading" id="ChO-Zx-Mrm"/>
-                                        <constraint firstItem="Jcx-F3-yVd" firstAttribute="centerY" secondItem="aHT-od-nba" secondAttribute="centerY" constant="20" id="PRi-fh-FG3"/>
-                                        <constraint firstItem="i9u-Ja-CN4" firstAttribute="leading" secondItem="LvT-PM-d5T" secondAttribute="trailing" constant="8" id="dq3-46-h4y"/>
-                                        <constraint firstItem="Jcx-F3-yVd" firstAttribute="leading" secondItem="aHT-od-nba" secondAttribute="leading" constant="11" id="nJT-yk-gPG"/>
-                                        <constraint firstItem="LvT-PM-d5T" firstAttribute="centerY" secondItem="aHT-od-nba" secondAttribute="centerY" constant="-13.5" id="yrv-SC-JaE"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="RSSILabel" destination="Jcx-F3-yVd" id="NfS-3R-wK8"/>
@@ -115,7 +103,7 @@
     </scenes>
     <resources>
         <image name="connectable" width="50" height="50"/>
-        <image name="data_bars_test" width="512" height="512"/>
+        <image name="signal_empty" width="50" height="50"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -1,8 +1,8 @@
 {
   "images" : [
     {
+      "filename" : "icons8-no-connection-50(1).png",
       "idiom" : "universal",
-      "filename" : "data_bars_test.png",
       "scale" : "1x"
     },
     {
@@ -15,7 +15,7 @@
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

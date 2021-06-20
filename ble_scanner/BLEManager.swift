@@ -12,7 +12,7 @@ import CoreBluetooth
 class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     struct Peripheral {
-        let name: String
+        var name: String
         let RSSI: Int
         let connectable: NSNumber
         let uuid: String
@@ -86,7 +86,4 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("Failed to connect..")
     }
-
-    
-    
 }
