@@ -79,22 +79,19 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         cell.nameLabel.text = bleManager.peripheralList[indexPath.row].name
         cell.RSSILabel.text = bleManager.peripheralList[indexPath.row].RSSI.description
         
-        // Styling for connectable label
+        // Styling for connectable img
         let connectableValue = bleManager.peripheralList[indexPath.row].connectable
-        var connectableText: String
-        var connectableColor: UIColor
+        var connectableImg: UIImage?
         
+        // Change imageview based on if peripheral is connectable or not
         if connectableValue == 1 {
-            connectableText = "Connect"
-            connectableColor = UIColor(red: 50.0/255, green: 180.0/255, blue: 111.0/255, alpha: 1)
+            connectableImg = UIImage(named: "connectable")
             
         } else {
-            connectableText = "Unavailable"
-            connectableColor = UIColor.red
+            connectableImg = UIImage(named: "not_connectable")
         }
         
-        cell.connectableLabel.text = connectableText
-        cell.connectableLabel.backgroundColor = connectableColor
+        cell.connectableImage.image = connectableImg
 
         return cell
     }
