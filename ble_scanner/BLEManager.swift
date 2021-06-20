@@ -65,22 +65,11 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             peripheralList.append(Peripheral(name: peripheral.name ?? "N/A", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, uuid: peripheral.identifier.uuidString, ad: advertisementData, peripheralObj: peripheral))
             
             // Print list
-            print("New peripheral added to list")
-            //print(peripheralList)
+            print("New peripheral added to list: \(peripheral.name ?? "N/A")")
             
             // Refresh tableview whenever new peripheral is found
             self.refreshDelegate?.reloadTableView()
         }
-
-        
-        /*
-        // Stop scanning and connect to peripheral
-        self.centralManager.stopScan()
-        self.chosenPeripheral = peripheral     // Save class-level reference of chosen peripheral
-        self.chosenPeripheral.delegate = self  // Delegate self to the chosenPeripheral
-        
-        self.centralManager.connect(peripheral, options: nil)  // Finally connect
-         */
     }
     
     // Called when a connection is made to a BLE device
