@@ -76,9 +76,7 @@
                             <outlet property="delegate" destination="xtb-Hf-ln5" id="jsO-te-TIe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="jqk-kj-bav">
-                        <nil key="title"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="jqk-kj-bav"/>
                     <connections>
                         <outlet property="bleTableView" destination="3q2-Oc-xEK" id="0pu-WN-yHC"/>
                     </connections>
@@ -95,7 +93,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="8K1-cX-dhq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.30557547719691491" green="0.60905640325052723" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.36915844679999998" green="0.68095058200000003" blue="0.98643738030000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

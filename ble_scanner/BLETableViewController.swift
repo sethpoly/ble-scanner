@@ -26,28 +26,33 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         // Connect delegate to self
         bleManager.refreshDelegate = self
         
-        // Start timer while manager is scanning
-//        scanTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(startScanTimer), userInfo: nil, repeats: true)
-        
-        // Init refresh control to completely rescan ble peripherals
+        // Init refresh control to reload tableview
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.addTarget(self, action: #selector(self.reloadTableView), for: UIControlEvents.valueChanged)
         
-        // Set up filter button
-        initFilterButton()
+        // Style navbar and inits sort button
+        styleNavBar()
     }
     
-    // Creates a filter bar button on nav bar
-    func initFilterButton(){
-        let filterBtn: UIButton = UIButton(type: UIButton.ButtonType.custom)
+    func styleNavBar(){
+        self.navigationItem.title = "BLE Scanner"
+        initSortButton()  // Set up sort button
+    }
+    
+    // Creates a sort bar button on nav bar
+    func initSortButton(){
+        let sortBtn: UIButton = UIButton(type: UIButton.ButtonType.custom)
         // Set img for btn
-        filterBtn.setImage(UIImage(named: "sort.png"), for: UIControl.State.normal)
+        sortBtn.setImage(UIImage(named: "sort.png"), for: UIControl.State.normal)
         // Add function for button
-        filterBtn.addTarget(self, action: #selector(BLETableViewController.toggleFilter), for: UIControl.Event.touchUpInside)
+        sortBtn.addTarget(self, action: #selector(BLETableViewController.togglesort), for: UIControl.Event.touchUpInside)
         // Set frame
-        filterBtn.frame = CGRect(x:0,y:0,width:24,height:24)
+        sortBtn.frame = CGRect(x:0,y:0,width:24,height:24)
         
-        let barBtn = UIBarButtonItem(customView: filterBtn)
+        let barBtn = UIBarButtonItem(customView: sortBtn)
+        
+        barBtn.customView?.backgroundColor = UIColor(red: 39.0/255, green: 131.0/255, blue: 196.0/255, alpha: 1)
+        // UIColor(red: 39, green: 131, blue: 196, alpha: 1)
         // Assign button
         self.navigationItem.rightBarButtonItem = barBtn
     }
@@ -63,7 +68,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         }
     }
     
-    @objc func toggleFilter() {
+    @objc func togglesort() {
         shouldSort = !shouldSort  // Set so all incoming peripherals are sorted automatically
         print("Sort: \(shouldSort)")
         reloadTableView()   // Reload view
