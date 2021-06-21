@@ -76,46 +76,37 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bleTableViewCell", for: indexPath) as! BLETableViewCell
         
+        // Save peripheral variables
         let perName = bleManager.peripheralList[indexPath.row].name
         let perRSSI = bleManager.peripheralList[indexPath.row].RSSI
-        
-        cell.nameLabel.text = perName
-        cell.RSSILabel.text = perRSSI.description
-        
-        // Styling for connectable img
         let connectableValue = bleManager.peripheralList[indexPath.row].connectable
-        var connectableImg: UIImage?
         
         // Change imageview based on if peripheral is connectable or not
         if connectableValue == 1 {
-            connectableImg = UIImage(named: "connectable")
+            cell.connectableImage.image = UIImage(named: "connectable")
             
         } else {
-            connectableImg = UIImage(named: "not_connectable")
+            cell.connectableImage.image = UIImage(named: "not_connectable")
         }
-        
-        cell.connectableImage.image = connectableImg
         
         // Style for ifConnected label
         let isConnectedValue = bleManager.peripheralList[indexPath.row].connected
         switch(isConnectedValue) {
         case 1:
             cell.isConnectedLabel.text = "Connecting..."
-            break
         case 2:
             cell.isConnectedLabel.text = "Connected"
             /* BUG: multiple cells are affected?
             cell.isConnectedLabel.textColor = UIColor(red: 0.0/255, green: 190.0/255, blue: 112.0/255, alpha: 1)
              */
-            break
         default:
             cell.isConnectedLabel.text = "Not connected"
-            break
         }
         
-        // Style for signal bar image based on RSSI
-        cell.dataImage.image = getSignalImage(signal: perRSSI)
-        
+        cell.nameLabel.text = perName
+        cell.RSSILabel.text = perRSSI.description
+        cell.dataImage.image = getSignalImage(signal: perRSSI)// Style for signal bar image based on RSSI
+
         return cell
     }
     
@@ -134,6 +125,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         reloadTableView()
     }
     
+    // Returns a UIImage based on the signal strength (RSSI)
     func getSignalImage(signal: Int) -> UIImage {
         var signalImage: UIImage!
         

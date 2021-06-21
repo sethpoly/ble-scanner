@@ -82,8 +82,4 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         //self.chosenPeripheral.discoverServices(nil)
         
     }
-    
-    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print("Failed to connect..")
-    }
 }
