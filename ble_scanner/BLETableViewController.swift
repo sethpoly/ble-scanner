@@ -103,6 +103,11 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
             cell.isConnectedLabel.text = "Not connected"
         }
         
+        // Style for unavailable devices
+        if connectableValue == 0 {
+            cell.isConnectedLabel.text = "Unavailable"
+        }
+        
         cell.nameLabel.text = perName
         cell.RSSILabel.text = perRSSI.description
         cell.dataImage.image = getSignalImage(signal: perRSSI)// Style for signal bar image based on RSSI
@@ -112,13 +117,18 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        // Display that we are trying to connect on cell select
-        bleManager.peripheralList[indexPath.row].connected = 1  // "Connecting..."
-        print("Trying to connect..")
-        
-        // Save chosen peripheral & connect
-        bleManager.chosenPeripheral = bleManager.peripheralList[indexPath.row]
-        bleManager.centralManager.connect(bleManager.chosenPeripheral.peripheralObj, options: nil)
+        // If device is connectable, try to connect
+        if bleManager.peripheralList[indexPath.row].connectable == 1 {
+            // Display that we are trying to connect on cell select
+            bleManager.peripheralList[indexPath.row].connected = 1  // "Connecting..."
+            print("Trying to connect..")
+            
+            // Save chosen peripheral & connect
+            bleManager.chosenPeripheral = bleManager.peripheralList[indexPath.row]
+            bleManager.centralManager.connect(bleManager.chosenPeripheral.peripheralObj, options: nil)
+        } else {
+            print("Device is not connectable..")
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
         
