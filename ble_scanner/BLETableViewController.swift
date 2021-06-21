@@ -166,7 +166,7 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
     }
 }
 
-// Allows us to call the reloadview from BLE manager
+// Allows me to call the reloadview from BLE manager
 protocol RefreshDelegate {
     func reloadTableView()
     func onPeripheralConnection(uuid: String)

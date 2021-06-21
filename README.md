@@ -13,5 +13,5 @@ A BLE Scanner application for iOS that scans for nearby Bluetooth Low Energy dev
 ![Demo of ble-scanner app](https://github.com/sethpoly/ble-scanner/blob/17af8ccf58d7691589c554c4579ebd6acfe2f729/ble_scanner/demo.gif)
 
 ## Technologies Used
-Swift 4, CoreBluetooth
+Swift 4, Xcode 13.0, CoreBluetooth, iPhone 6 (testing)
 
