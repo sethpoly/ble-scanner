@@ -14,7 +14,6 @@
 		BA27E021267BF3290029C28D /* BLETableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27E020267BF3290029C28D /* BLETableViewController.swift */; };
 		BA27E025267BFBDC0029C28D /* BLETableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA27E024267BFBDC0029C28D /* BLETableViewCell.swift */; };
 		BA377832267D472400AA27E0 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA377831267D472400AA27E0 /* BLEManager.swift */; };
-		BA377834268022C000AA27E0 /* ble-demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = BA377833268022C000AA27E0 /* ble-demo.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +27,7 @@
 		BA27E024267BFBDC0029C28D /* BLETableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLETableViewCell.swift; sourceTree = "<group>"; };
 		BA377830267D415900AA27E0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		BA377831267D472400AA27E0 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
-		BA377833268022C000AA27E0 /* ble-demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "ble-demo.gif"; path = "../ble-demo.gif"; sourceTree = "<group>"; };
+		BA3778352680239900AA27E0 /* ble-demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "ble-demo.gif"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +44,6 @@
 		BA27E000267BDE6A0029C28D = {
 			isa = PBXGroup;
 			children = (
-				BA377833268022C000AA27E0 /* ble-demo.gif */,
 				BA377830267D415900AA27E0 /* README.md */,
 				BA27E00B267BDE6A0029C28D /* ble_scanner */,
 				BA27E00A267BDE6A0029C28D /* Products */,
@@ -63,6 +61,7 @@
 		BA27E00B267BDE6A0029C28D /* ble_scanner */ = {
 			isa = PBXGroup;
 			children = (
+				BA3778352680239900AA27E0 /* ble-demo.gif */,
 				BA27E023267BFBC20029C28D /* Views */,
 				BA27E022267BFBB60029C28D /* Controllers */,
 				BA27E00C267BDE6A0029C28D /* AppDelegate.swift */,
@@ -153,7 +152,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA27E017267BDE6B0029C28D /* LaunchScreen.storyboard in Resources */,
-				BA377834268022C000AA27E0 /* ble-demo.gif in Resources */,
 				BA27E014267BDE6B0029C28D /* Assets.xcassets in Resources */,
 				BA27E012267BDE6B0029C28D /* Main.storyboard in Resources */,
 			);
