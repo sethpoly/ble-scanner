@@ -1,3 +1,3 @@
 #  BLE Scanner
-A BLE Scanner application for iOS.
+A BLE Scanner application for iOS..
 
