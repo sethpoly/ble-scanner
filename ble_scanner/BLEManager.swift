@@ -64,7 +64,7 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         
         // Check if already scanned peripheral
         if !peripheralList.contains(where: { $0.uuid == uuid}) {
-            peripheralList.append(Peripheral(name: peripheral.name ?? "N/A", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, uuid: peripheral.identifier.uuidString, ad: advertisementData, peripheralObj: peripheral, connected: 0))
+            peripheralList.append(Peripheral(name: peripheral.name ?? "N/A", RSSI: RSSI, connectable: (advertisementData["kCBAdvDataIsConnectable"]) as! NSNumber, uuid: uuid, ad: advertisementData, peripheralObj: peripheral, connected: 0))
             
             // Print newly added peripheral name
             print("New peripheral added to list: \(peripheral.name ?? "N/A")")
@@ -80,6 +80,5 @@ class BLEManager: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         self.refreshDelegate?.onPeripheralConnection(uuid: peripheral.identifier.uuidString)
         //peripheral.delegate = self
         //self.chosenPeripheral.discoverServices(nil)
-        
     }
 }
