@@ -6,6 +6,7 @@ A BLE Scanner application for iOS that scans for nearby Bluetooth Low Energy dev
     - Name of nearby devices
     - RSSI value
     - If device is connectable
+    - Signal bar that correlates with RSSI value
 - Ability to connect to various devices within range
 - Can sort scanned devices by ascending RSSI values
 
