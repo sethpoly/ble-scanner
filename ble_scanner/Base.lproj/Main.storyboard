@@ -54,7 +54,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LvT-PM-d5T">
                                             <rect key="frame" x="10" y="11" width="42" height="37"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <imageReference key="image" image="signal_empty"/>
+                                            <imageReference key="image" image="signal_default"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -103,7 +103,7 @@
     </scenes>
     <resources>
         <image name="connectable" width="50" height="50"/>
-        <image name="signal_empty" width="50" height="50"/>
+        <image name="signal_default" width="50" height="50"/>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

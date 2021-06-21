@@ -76,8 +76,11 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "bleTableViewCell", for: indexPath) as! BLETableViewCell
         
-        cell.nameLabel.text = bleManager.peripheralList[indexPath.row].name
-        cell.RSSILabel.text = bleManager.peripheralList[indexPath.row].RSSI.description
+        let perName = bleManager.peripheralList[indexPath.row].name
+        let perRSSI = bleManager.peripheralList[indexPath.row].RSSI
+        
+        cell.nameLabel.text = perName
+        cell.RSSILabel.text = perRSSI.description
         
         // Styling for connectable img
         let connectableValue = bleManager.peripheralList[indexPath.row].connectable
@@ -110,6 +113,9 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
             break
         }
         
+        // Style for signal bar image based on RSSI
+        cell.dataImage.image = getSignalImage(signal: perRSSI)
+        
         return cell
     }
     
@@ -126,6 +132,26 @@ class BLETableViewController: UITableViewController, RefreshDelegate, CBPeripher
         tableView.deselectRow(at: indexPath, animated: true)
         
         reloadTableView()
+    }
+    
+    func getSignalImage(signal: Int) -> UIImage {
+        var signalImage: UIImage!
+        
+        switch signal {
+        case let x where x <= -100:
+            signalImage = UIImage(named: "signal_none")
+        case -99 ... -80:
+            signalImage = UIImage(named: "signal_low")
+        case -79 ... -70:
+            signalImage = UIImage(named: "signal_medium")
+        case -69 ... -60:
+            signalImage = UIImage(named: "signal_high")
+        case -59 ... 200:
+            signalImage = UIImage(named: "signal_full")
+        default:
+            signalImage = UIImage(named: "signal_default")
+        }
+        return signalImage
     }
     
     // Reload tableview with peripheralList data
