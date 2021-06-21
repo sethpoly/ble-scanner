@@ -10,6 +10,7 @@ A BLE Scanner application for iOS that scans for nearby Bluetooth Low Energy dev
 - Can sort scanned devices by ascending RSSI values
 
 ## Visual Example
+![Demo of ble-scanner app](ble-demo.gif)
 
 ## Technologies Used
 Swift 4, CoreBluetooth
